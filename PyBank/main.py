@@ -1,48 +1,53 @@
 import os
 import csv
 
-
-
-#cite csv file directory
 budgetData_csvpath = os.path.join("python-challenge/PyBank/budget_data.csv")
 
-profitOrLosses = []
-
-#load csv file, newline separated by no space
 with open(budgetData_csvpath) as csvfile:
     csv_reader = csv.reader(csvfile, delimiter=",")
     next(csv_reader,None)
 
-    #loop through rows in csv reader
+    #create empty lists for values reusing purposes
+    dates = []
+    profitOrLosses = []
+
     for row in csv_reader:
 
-        
+        #Headers (csv column nicknames)
+        date = row[0]
+        profitLosses = row[1]
 
-    #Number of months: add 1 to variable for every row detected, save the header row
-        numberOfMonths = sum(1 for row in csv_reader ) 
-        print("The total number of months included: " + str(numberOfMonths))
+        #Subbing csv values into empty lists above
+        dates.append(date)
+        profitOrLosses.append(int(profitLosses))
+            
+#Equations for assignment objectives
+#sum of profit and losses
+total = sum(profitOrLosses)
+# average of sum over number of months included
+averageProfit = total/len(dates)
 
-    #Total profit and losses: sum of the values in row 1
-        totalProfitLosses = 0
-        totalProfitLosses += float(row[1])
-        print("The total amount of Profit/Losses over the entire period: $ " + str(totalProfitLosses))
+#max profit
+greatestProfit = int(max(profitOrLosses))
+#using index() to identify max value's position/coordination in csv, in this case it is col[25]
+maxDex = profitOrLosses.index(greatestProfit)
+#then apply the index onto a different item for the associated value of the referred cell/value above
+maxDate = dates[maxDex]
 
-    #The average of the changes in Profit/Losses over the entire period
-        averageChanges = totalProfitLosses / numberOfMonths
-        print("The average of the anges over the entire period: $ " + str(averageChanges))
+#'max' losses
+greatestLosses = int(min(profitOrLosses))
+minDex = profitOrLosses.index(greatestLosses)
+minDate = dates[minDex]
 
-    
-    #Put profit and losses values into a list 
-       # profitOrLosses.append(row[1])
-        
+print("Total number of months included: " + str(len(dates)))
+print("The net total amounf of 'Profit/Losses' over the entire period: $ " + str(total))
+print("The average of the changes in 'Profit/Losses' over the entire period: $ " + str(averageProfit))
+print("The greatest increase in profits (date and amount) over the entire period: $ " + str(greatestProfit) + " on " + maxDate)
+print("The greatest decrease in losses (date and amount) over the entire period: $ " + str(greatestLosses) + " on " + minDate)
 
-    #The greatest increase in profits and date extracted from list 'profitOrLosses'
-       # greatestProfit = max(profitOrLosses, key = int)
-       # print("The greatest increase in profit is " + row[1] + " on " + row[0])
-
-    #The greatest decrease in losses and date extracted from list 'profitOrLosses'    
-       # greatestLosses = min(profitOrLosses, key = int)
-       # print("The greatest decrease in losses is " + row[1] + " on " + row[0])
-
-       
-   
+with open("python-challenge/PyBank/Output.txt", "w") as text_file:
+    print(f"Total number of months included: " + str(len(dates)), file=text_file)
+    print(f"The net total amounf of 'Profit/Losses' over the entire period: $ " + str(total), file=text_file)
+    print(f"The average of the changes in 'Profit/Losses' over the entire period: $ " + str(averageProfit), file=text_file)
+    print(f"The greatest increase in profits (date and amount) over the entire period: $ " + str(greatestProfit) + " on " + maxDate, file=text_file)
+    print(f"The greatest decrease in losses (date and amount) over the entire period: $ " + str(greatestLosses) + " on " + minDate, file=text_file)

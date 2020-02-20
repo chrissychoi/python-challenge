@@ -1,0 +1,5 @@
+Total number of months included: 86
+The net total amounf of 'Profit/Losses' over the entire period: $ 38382578
+The average of the changes in 'Profit/Losses' over the entire period: $ 446309.0465116279
+The greatest increase in profits (date and amount) over the entire period: $ 1170593 on Feb-2012
+The greatest decrease in losses (date and amount) over the entire period: $ -1196225 on Sep-2013
