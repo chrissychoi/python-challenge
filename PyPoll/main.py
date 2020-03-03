@@ -2,7 +2,9 @@ import os
 import csv
 import numpy as np 
 
-electionData_csvpath = os.path.join("python-challenge/PyPoll/election_data.csv")
+##Assistant Instructor Comments: Make sure to use relative path. This is so that others can still run your code even though they don't have the same file directory as you.
+#electionData_csvpath = os.path.join("python-challenge/PyPoll/election_data.csv")
+electionData_csvpath = os.path.join("election_data.csv")
 
 with open(electionData_csvpath) as csvfile:
     csv_reader = csv.reader(csvfile, delimiter=",")
@@ -66,8 +68,11 @@ print("Winner: " + str(maxCandidate))
 print('''
 -----------------------------------------------
 ''')
+## Assistant Instructor Comments: Same goes here with the path. make sure to use relative paths otherwise the code would throw errors
 
-with open("python-challenge/PyPoll/Output.txt", "w") as text_file:
+#with open("python-challenge/PyPoll/Output.txt", "w") as text_file:
+with open("Output.txt", "w") as text_file:
+
     print(f'''
 -----------------------------------------------
     ''',file=text_file)

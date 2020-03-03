@@ -1,7 +1,9 @@
 import os
 import csv
 
-budgetData_csvpath = os.path.join("python-challenge/PyBank/budget_data.csv")
+budgetData_csvpath = os.path.join("budget_data.csv")
+##Assistant Instructor Comments: Make sure to use relative path. This is so that others can still run your code even though they don't have the same file directory as you.
+#budgetData_csvpath = os.path.join("python-challenge/PyBank/budget_data.csv")
 
 with open(budgetData_csvpath) as csvfile:
     csv_reader = csv.reader(csvfile, delimiter=",")
@@ -46,8 +48,10 @@ print("Total: $ " + str(total))
 print("Average Change: $ " + str(averageProfit))
 print("Greatest Increase in Profits: " + maxDate + " ($" + str(greatestProfit) +") ")
 print("Greatest Decrease in Profits: " + minDate + " ($" + str(greatestLosses) + ") ")
+## Assistant Instructor Comments: Same goes here with the path. make sure to use relative paths otherwise the code would throw errors
+with open("Output.txt", "w") as text_file:
 
-with open("python-challenge/PyBank/Output.txt", "w") as text_file:
+#with open("python-challenge/PyBank/Output.txt", "w") as text_file:
     print(f"Financial Analysis", file=text_file)
     print(f"----------------------------", file=text_file)
     print(f"Total Months: " + str(len(dates)), file=text_file)
